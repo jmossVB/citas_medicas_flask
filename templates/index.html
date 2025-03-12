@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Registro de Citas Médicas</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    </head>
+<body>
+    <h2>Registro de Citas Medicas con Flask</h2>
+    <form action="/registrar_cita" method="post">
+        <table>
+            <tr>
+                <td><label for="cnompac">Nombre del paciente:</label></td>
+                <td><input type="text" name="cnompac" required></td>
+            </tr>
+            <tr>
+                <td><label for="ccorpac">Correo electrónico:</label></td>
+                <td><input type="email" name="ccorpac" required></td>
+            </tr>
+            <tr>
+                <td><label for="ctelpac">Número de teléfono:</label></td>
+                <td><input type="number" name="ctelpac" required></td>
+            </tr>
+            <tr>
+                <td><label for="cespmed">Especialidad médica:</label></td>
+                <td><select name="cespmed" required>
+                    <option value="Cardiología">Cardiología</option>
+                    <option value="Pediatría">Pediatría</option>
+                    <option value="Dermatología">Dermatología</option>
+                    <option value="Neurología">Neurología</option>
+                    <option value="Oftalmología">Oftalmología</option>
+                </select><br><br></td>
+            </tr>
+            <tr>
+                <td><label for="dfeccit">Fecha de la cita:</label></td>
+                <td><input type="date" name="dfeccit" required></td>
+            </tr>
+            <tr>
+                <td><label for="thorcit">Hora de la cita:</label></td>
+                <td><input type="time" name="thorcit" required></td>
+            </tr>
+            <tr>
+                <td><label for="csincon">Síntomas o motivo de la consulta:</label></td>
+                <td><textarea name="csincon" required></textarea></td>
+            </tr>
+            <tr>
+                <td><button type="submit">Registrar Cita</button></td>
+            </tr>
+    </table>
+    </form>
+
+
+    <h3>Citas Registradas</h3>
+    <ul>
+        {% for cita in citas %}
+            <li>
+                <strong>{{ cita.nombre }}</strong> - {{ cita.fecha }} a las {{ cita.hora }}<br>
+                Especialidad: {{ cita.especialidad }}<br>
+                Teléfono: {{ cita.telefono }}<br>
+                Correo: {{ cita.correo }}<br>
+                Motivo: {{ cita.sintomas }}<br>
+            </li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>
+
+
